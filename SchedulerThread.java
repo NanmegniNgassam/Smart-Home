@@ -1,7 +1,7 @@
 class SchedulerThread extends Thread
 {   
-    Joueur player;
-    SchedulerThread(Joueur player)
+    Habitant player;
+    SchedulerThread(Habitant player)
     {
         this.player=player;
     }
@@ -18,6 +18,8 @@ class SchedulerThread extends Thread
                 e.printStackTrace();
             }
             player.famine++;
+            player.electricity--;
+            
             if (player.famine>100){System.out.println("il est morts");player.isAlive=false;MainPlay.Gameover();}
         }   
     }

@@ -1,7 +1,7 @@
 class EtatThread extends Thread
 {   
-    Joueur player;
-    EtatThread(Joueur player)
+    Habitant player;
+    EtatThread(Habitant player)
     {
         this.player=player;
     }
@@ -12,6 +12,10 @@ class EtatThread extends Thread
             System.out.println("Location:"+player.location.nameOfRoom);
             System.out.println("L'etat de famine:"+player.famine);
             System.out.println("Sold:"+player.money);
+            System.out.println("electricity:"+player.electricity);
+            System.out.println("Money:"+player.money);
+
+
             // System.out.println(":"+player.money);
 
 
