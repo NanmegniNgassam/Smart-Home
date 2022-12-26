@@ -1,13 +1,13 @@
 class SchedulerThread extends Thread
 {   
-    Habitant player;
-    SchedulerThread(Habitant player)
+    Habitant habitant;
+    SchedulerThread(Habitant habitant)
     {
-        this.player=player;
+        this.habitant=habitant;
     }
     public void run()
     {
-        while(player.isAlive)//chaque 2 secondes j'ajoute 1 a la famine
+        while(habitant.isAlive)//chaque 2 secondes j'ajoute 1 a la famine
         {
             // System.out.println("thread is running...");
             try 
@@ -17,10 +17,12 @@ class SchedulerThread extends Thread
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            player.famine++;
-            player.electricity--;
+            habitant.famine++;
+            habitant.electricity=habitant.electricity-1-(Room.nbOfturnedOnLights)*3;//je soustraire plus d'electricity quand il y'a 
             
-            if (player.famine>100){System.out.println("il est morts");player.isAlive=false;MainPlay.Gameover();}
+            
+            if (habitant.famine>100){System.out.println("il est morts de faims");habitant.isAlive=false;MainPlay.Gameover();}
+            if (habitant.electricity<0){System.out.println("Plus d'electricity");habitant.isAlive=false;MainPlay.Gameover();}
         }   
     }
 }

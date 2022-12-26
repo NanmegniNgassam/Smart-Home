@@ -1,22 +1,25 @@
 class EtatThread extends Thread
 {   
-    Habitant player;
-    EtatThread(Habitant player)
+    Habitant habitant;
+    Player player;
+    EtatThread(Habitant habitant,Player player)
     {
+        this.habitant=habitant;
         this.player=player;
     }
     public void run()//chaque 5 secondes les etats sont afficher
     {
-        while(player.isAlive)
+        try{sleep(5000);}catch (InterruptedException e) {e.printStackTrace();}
+        while(habitant.isAlive)
         {
-            System.out.println("Location:"+player.location.nameOfRoom);
-            System.out.println("L'etat de famine:"+player.famine);
-            System.out.println("Sold:"+player.money);
-            System.out.println("electricity:"+player.electricity);
+            System.out.println("Location:"+habitant.location.nameOfRoom);
+            System.out.println("L'etat de famine:"+habitant.famine);
+            // System.out.println("Sold:"+habitant.money);
+            System.out.println("electricity:"+habitant.electricity);
             System.out.println("Money:"+player.money);
 
 
-            // System.out.println(":"+player.money);
+            // System.out.println(":"+habitant.money);
 
 
             try{sleep(5000);}catch (InterruptedException e) {e.printStackTrace();}
