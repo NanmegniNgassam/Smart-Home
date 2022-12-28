@@ -63,7 +63,7 @@ class MainPlay
     static void bedroomDoList(Habitant habitant)
     {
         //Warning:Il faut ajouter des autres methodes pour cette chambre sinon le choix (what you want to do) est pas necessaire
-        Random rand = new Random();
+        // Random rand = new Random();
         // System.out.println("Do you want to do?");
         // System.out.println("0-to sleep");
         // System.out.println("1-se deplacer");
@@ -122,7 +122,7 @@ class MainPlay
         maison.bath.switchLight(true);
         if(reponse==0)
         {
-            habitant.faireLaLessive();
+            habitant.faireLaLessive(maison);
             doDeplacement(maison,habitant);//car c'est illogique que le joueur reste entrain de faire la lessive
         }
         else if(reponse==1)
@@ -133,7 +133,7 @@ class MainPlay
 
     static void livingDoList(Habitant habitant)
     {
-        Random rand = new Random();
+        // Random rand = new Random();
         // System.out.println("Do you want to do?");
         // System.out.println("0-faire la lessive");
         // System.out.println("1-se deplacer");
@@ -143,7 +143,7 @@ class MainPlay
         maison.living.switchLight(true);
         if(reponse==0)
         {
-            habitant.allumerTelevision();
+            habitant.allumerTelevision(maison);
             doDeplacement(maison,habitant);//car c'est illogique que le joueur reste entrain de regarder la tele
         }
         else if(reponse==1)
@@ -163,7 +163,7 @@ class MainPlay
             maison=new Maison();
             Habitant habitant=new Habitant("Saad",65,90,maison.kit,0);
             
-            SchedulerThread threadSched=new SchedulerThread(habitant);
+            SchedulerThread threadSched=new SchedulerThread(habitant,maison);
             EtatThread threadEtat=new EtatThread(habitant,player);
             PlayerOrders playerorders=new PlayerOrders(player, maison, habitant);
 
@@ -182,7 +182,7 @@ class MainPlay
         if (rep==0)System.out.println("Bye");
         else
         {
-            Player player=new Player(0,70);
+            Player player=new Player(0,200);
             Habitant habitant;
             habitant=Gameinit(player);
 

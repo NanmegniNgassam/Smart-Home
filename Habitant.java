@@ -24,12 +24,12 @@ class Habitant
     public void seDeplacer(Room r){};
     
     public void prendreUnBain(){};
-    public void allumerTelevision()
+    public void allumerTelevision(Maison maison)
     {
-        if (electricity<=5){System.out.println("Plus d'electricity\n");;MainPlay.Gameover();}
+        if (electricity<=maison.living.TV.electricityUse){System.out.println("Plus d'electricity\n");;MainPlay.Gameover();}
         else
         {
-            this.electricity=this.electricity-5;
+            this.electricity=this.electricity-maison.living.TV.electricityUse;
             for (int i=0;i<3;i++)
             {
                 System.out.println("Habitant entrain de regarder la television...");
@@ -38,13 +38,13 @@ class Habitant
 
         }
     };
-    public void faireLaLessive()
+    public void faireLaLessive(Maison maison)
     {
         System.out.println("le habitant entrain de faire la lessive\n");
-        if (electricity<=5){System.out.println("Plus d'electricity\n");;MainPlay.Gameover();}
+        if (electricity<=maison.bath.laverie.electricityUse){System.out.println("Plus d'electricity\n");;MainPlay.Gameover();}
         else
         {
-            this.electricity=this.electricity-5;
+            this.electricity=this.electricity-maison.bath.laverie.electricityUse;
             for (int i=0;i<3;i++)
             {
                 System.out.println("Habitant entrain de faire la lessive...");

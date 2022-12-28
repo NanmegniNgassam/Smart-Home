@@ -1,9 +1,11 @@
 class SchedulerThread extends Thread
 {   
     Habitant habitant;
-    SchedulerThread(Habitant habitant)
+    Maison maison;
+    SchedulerThread(Habitant habitant,Maison maison)
     {
         this.habitant=habitant;
+        this.maison=maison;
     }
     public void run()
     {
@@ -18,7 +20,7 @@ class SchedulerThread extends Thread
                 e.printStackTrace();
             }
             habitant.famine++;
-            habitant.electricity=habitant.electricity-1-(Room.nbOfturnedOnLights)*3;//je soustraire plus d'electricity quand il y'a 
+            // habitant.electricity=habitant.electricity-1-(Room.nbOfturnedOnLights)*3;//je soustraire plus d'electricity quand il y'a 
             
             
             if (habitant.famine>100){System.out.println("il est morts de faims");habitant.isAlive=false;MainPlay.Gameover();}

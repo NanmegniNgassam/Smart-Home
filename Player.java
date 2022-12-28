@@ -1,4 +1,3 @@
-import java.lang.System.Logger.Level;
 
 public class Player 
 {
@@ -17,9 +16,9 @@ public class Player
         m.switchLight(false);
     }
 
-    void interagirThermostat()
+    void upgrade (Objet obj)
     {
-    
+        obj.upgrade();
     }
 
 }

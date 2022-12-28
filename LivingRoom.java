@@ -9,6 +9,7 @@ class LivingRoom extends Room
     {
         System.out.println("i am here");
         nameOfRoom="LivingRoom";
+        TV=new Television();
 
     }
 

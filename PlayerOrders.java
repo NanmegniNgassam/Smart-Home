@@ -51,12 +51,26 @@ public class PlayerOrders extends Thread
         {
             System.out.println("What to you want to do?");
             System.out.println("1-Eteindre la lumiere");
+            System.out.println("2-Upgrade television");
+            System.out.println("3- upgrade la laverie");
+
+
+            
             
             int reponse =scan.nextInt();
             if (reponse==1)
             {
                 Eteindre();
             }
+            if (reponse==2)
+            {
+                player.upgrade(maison.living.TV);
+            }
+            if (reponse==3)
+            {
+                player.upgrade(maison.bath.laverie);
+            }
+
 
         }
     }

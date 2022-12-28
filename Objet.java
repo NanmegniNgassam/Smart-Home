@@ -1,8 +1,9 @@
-class Objet 
+abstract class Objet 
 {
-    private int level;
-    private String Name;
-    private float price;
+    protected int level;
+    protected String Name;
+    protected float priceToUpgrade;
+    protected int electricityUse;
     
     public void upgrade(){};
 }
