@@ -1,5 +1,5 @@
 class EtatThread extends Thread
-{   
+{
     Habitant habitant;
     Player player;
     EtatThread(Habitant habitant,Player player)

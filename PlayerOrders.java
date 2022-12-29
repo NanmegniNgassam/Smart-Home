@@ -24,19 +24,43 @@ public class PlayerOrders extends Thread
         int reponse =scan.nextInt();
         if(reponse==1)
         {
-            maison.living.switchLight(false);
+            if(maison.living.lightState==true)
+            {
+                maison.living.switchLight(false);
+                System.out.println("Livin1!!!!!!!!!!!11");
+
+                maison.update();
+            }
         }
         else if(reponse==2)
         {
-            maison.kit.switchLight(false);
+            if(maison.kit.lightState==true)
+            { maison.kit.switchLight(false);
+                maison.update();
+                
+            }
         }
         else if (reponse==3)
         {
-            maison.bath.switchLight(false);
+            System.out.println("!kit!!!!!!!!!!!!");
+            System.out.println("");
+
+            if(maison.bath.lightState==true)
+            {
+                maison.bath.switchLight(false);
+                System.out.println("!Bath!!!!!!!!!!!!!");
+                maison.update();
+            }
         }
         else
         {
-            maison.bed.switchLight(false);
+            if(maison.bed.lightState==true)
+            {
+                maison.bed.switchLight(false);
+                System.out.println("!Bedroom!!!!!!!!!!!!!");
+
+                maison.update();
+            }
         }
 
         

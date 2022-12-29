@@ -1,7 +1,7 @@
 import java.util.*;
 import java.util.Random;
 
-class MainPlay 
+class MainPlay
 {
     static int oldChoixKitchen=-1;
     static int oldChoixDeplacement=1;//car on suppose que le joueur est present dans le kitchen au debut de la game
@@ -13,10 +13,10 @@ class MainPlay
     static Maison maison;
     static void doList(Habitant habitant,Player player)
     {
-        try {java.lang.Thread.sleep(1500);} catch (InterruptedException e) {e.printStackTrace();}//sleep pour decaler 
-        
+        try {java.lang.Thread.sleep(1500);} catch (InterruptedException e) {e.printStackTrace();}//sleep pour decaler
+
         if(habitant.location instanceof Kitchen)
-        {   
+        {
             kitchenDoList(habitant,player);
         }
         else if(habitant.location instanceof Bedroom)
@@ -36,28 +36,30 @@ class MainPlay
     {
         //Warning:Il faut ajouter des autres methodes pour cette chambre sinon le choix (what you want to do) est pas necessaire
 
+        if(maison.kit.lightState==false){maison.kit.switchLight(true);}
+        maison.update();
+
         Random rand = new Random();
         System.out.println("Do you want to do?");
         System.out.println("0-to eat");
         System.out.println("1-se deplacer");
-    
+
         int reponse = rand.nextInt(2);
-        
-        maison.bath.switchLight(true);
+
 
         System.out.println("Random reponse kitchen:"+reponse);
         if (reponse==0)
-        {  
+        {
             if (player.money<=10){System.out.println("Il y'a plus d'argent");habitant.isAlive=false;MainPlay.Gameover();}
             else
             {
                 player.money-=10;
-                habitant.seNourrir();   
+                habitant.seNourrir(maison);
             }
         }
         else if(reponse==1)
         {
-            doDeplacement(maison,habitant);        
+            doDeplacement(maison,habitant);
         }
     }
     static void bedroomDoList(Habitant habitant)
@@ -68,13 +70,16 @@ class MainPlay
         // System.out.println("0-to sleep");
         // System.out.println("1-se deplacer");
         // int reponse = rand.nextInt(2);
+
+        if(maison.bed.lightState==false){maison.bed.switchLight(true);}
+        maison.update();
+
         int reponse=0;
         System.out.println("Random reponse bedroom:"+reponse);
-        maison.bed.switchLight(true);
 
         if(reponse==0)
         {
-            
+
             habitant.faireUneSieste();
             doDeplacement(maison,habitant);//car c'est illogique que le joueur reste entrain de dormir dans la chambre
         }
@@ -116,10 +121,12 @@ class MainPlay
         // System.out.println("0-faire la lessive");
         // System.out.println("1-se deplacer");
         // int reponse = rand.nextInt(2);
+        if(maison.bath.lightState==false){maison.bath.switchLight(true);}
+        maison.update();
+
         int reponse=0;
         System.out.println("Random reponse bethroom:"+reponse);
 
-        maison.bath.switchLight(true);
         if(reponse==0)
         {
             habitant.faireLaLessive(maison);
@@ -138,9 +145,11 @@ class MainPlay
         // System.out.println("0-faire la lessive");
         // System.out.println("1-se deplacer");
         // int reponse = rand.nextInt(2);
+        if(maison.living.lightState==false){maison.living.switchLight(true);}
+        maison.update();
+
         int reponse=0;
         System.out.println("Random reponse bethroom:"+reponse);
-        maison.living.switchLight(true);
         if(reponse==0)
         {
             habitant.allumerTelevision(maison);
@@ -160,14 +169,21 @@ class MainPlay
     }
     static private Habitant Gameinit(Player player)
     {
-            maison=new Maison();
-            Habitant habitant=new Habitant("Saad",65,90,maison.kit,0);
-            
+            GUI gui=new GUI();
+            gui.createAndShowGUI();
+
+            Habitant habitant;
+            maison=new Maison(player,gui);
+            habitant=new Habitant("Saad",65,90,maison.kit,0);
+            maison.setHabitant(habitant);
+            maison.update();
+
             SchedulerThread threadSched=new SchedulerThread(habitant,maison);
+            // System.out.println(player.money+"!!!!!!!!111");
             EtatThread threadEtat=new EtatThread(habitant,player);
             PlayerOrders playerorders=new PlayerOrders(player, maison, habitant);
 
-    
+
             threadSched.start();
             threadEtat.start();
             playerorders.start();
@@ -176,7 +192,7 @@ class MainPlay
     public static void main(String[] args)
     {
         System.out.println("Do you want to start the game?");
-        Scanner sc= new Scanner(System.in); 
+        Scanner sc= new Scanner(System.in);
 
         int rep= sc.nextInt();
         if (rep==0)System.out.println("Bye");
@@ -195,5 +211,5 @@ class MainPlay
         }
         sc.close();
 
-    }    
+    }
 }

@@ -3,9 +3,9 @@ public class Player
 {
     String Name;
     int Level;
-    protected float money;
+    protected int money;
 
-    Player(int Level,float money)
+    Player(int Level,int money)
     {
         this.Level=Level;
         this.money=money;
@@ -19,6 +19,6 @@ public class Player
     void upgrade (Objet obj)
     {
         obj.upgrade();
-    }
+    };
 
 }

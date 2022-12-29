@@ -20,11 +20,12 @@ class SchedulerThread extends Thread
                 e.printStackTrace();
             }
             habitant.famine++;
-            // habitant.electricity=habitant.electricity-1-(Room.nbOfturnedOnLights)*3;//je soustraire plus d'electricity quand il y'a 
+            habitant.electricity=habitant.electricity-1-(Room.nbOfturnedOnLights)*3;//je soustraire plus d'electricity quand il y'a 
             
             
             if (habitant.famine>100){System.out.println("il est morts de faims");habitant.isAlive=false;MainPlay.Gameover();}
             if (habitant.electricity<0){System.out.println("Plus d'electricity");habitant.isAlive=false;MainPlay.Gameover();}
+            maison.update();
         }   
     }
 }

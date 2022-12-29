@@ -1,7 +1,7 @@
 abstract class Room 
 {
     protected boolean viewState;
-    protected boolean lightState;
+    protected boolean lightState=false;
     String  nameOfRoom;
     static int nbOfturnedOnLights=0;
 
@@ -13,11 +13,13 @@ abstract class Room
         {
             this.lightState=true;
             nbOfturnedOnLights++;
+
         }
         else
         {
             this.lightState=false;
             nbOfturnedOnLights--;
+
         }
     }
     public void interactView(){}

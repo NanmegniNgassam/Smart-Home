@@ -30,6 +30,8 @@ class Habitant
         else
         {
             this.electricity=this.electricity-maison.living.TV.electricityUse;
+            maison.update();
+
             for (int i=0;i<3;i++)
             {
                 System.out.println("Habitant entrain de regarder la television...");
@@ -45,6 +47,7 @@ class Habitant
         else
         {
             this.electricity=this.electricity-maison.bath.laverie.electricityUse;
+            maison.update();
             for (int i=0;i<3;i++)
             {
                 System.out.println("Habitant entrain de faire la lessive...");
@@ -57,7 +60,7 @@ class Habitant
     public void allumerLeChauffage(){};
     public void payerFacture(float amount){};
     public void jouerPs4(){};
-    public void seNourrir()
+    public void seNourrir(Maison maison)
     {
             
             
@@ -65,6 +68,7 @@ class Habitant
                 System.out.println("Sold -10...");
                 if (this.famine<10)this.famine=0;//to avoid a negative value for famine
                 else{this.famine-=10;}
+                maison.update();
                 System.out.println("Yummy yummy yummy deliciousss!");
                 try 
                 {
