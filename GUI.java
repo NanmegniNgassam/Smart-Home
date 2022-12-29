@@ -1,4 +1,5 @@
-import java.awt.*; 
+import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*; 
 public class GUI 
 {
@@ -8,10 +9,42 @@ public class GUI
     JLabel Famine;
     JLabel Money;
     JLabel NbOfLampeturnedOn;
+    Maison maison;
+
+    JLabel locationBed;
+    JLabel locationBath;
+    JLabel locationKit;
+    JLabel locationLiving;
 
     // JPanel Bed;
 
+    void setlocation(String roomname)
+    {
+        locationBath.setText("");
+        locationBed.setText("");
+        locationKit.setText("");
+        locationLiving.setText("");
+        if (roomname=="Bathroom")
+        {
+            locationBath.setText("Here");
+        }
+        if (roomname=="Bedroom")
+        {
+            locationBed.setText("Here");
+        }
+        if (roomname=="Kitchen")
+        {
+            locationBath.setText("Here");
+        }
+        if (roomname=="LivingRoom")
+        {
+            locationLiving.setText("Here");
+        }
 
+        
+
+
+    }
 
     void setTextlectriclabel(int elecvalue)
     {
@@ -34,6 +67,8 @@ public class GUI
     {
         NbOfLampeturnedOn.setText("LampsTurnedOn:"+Integer.toString(number));
     }
+    public void setMaison(Maison maison){this.maison=maison;}
+
 
 
     protected  void createAndShowGUI()
@@ -49,18 +84,89 @@ public class GUI
         JPanel LivingPanel=new JPanel();
         LivingPanel.setBounds(0,100,400,300);
         LivingPanel.setBackground(new java.awt.Color(50,50,50));
+        JButton buttonLiv=new JButton("off");
+        buttonLiv.setBounds(0,100,100,50);
+        buttonLiv.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                if(maison.living.lightState==true)
+                { maison.living.switchLight(false);
+                    maison.update();
+                    
+                }
+            }
+        });
+        JLabel Livingname=new JLabel("Living");
+        Livingname.setForeground(new java.awt.Color(255,0,0));
+        Livingname.setBounds(200, 0, 100, 20);
+
+
 
         JPanel KitchenPanel=new JPanel();
         KitchenPanel.setBounds(400,100,400,300);
         KitchenPanel.setBackground(new java.awt.Color(56,120,50));
+        JButton buttonKit=new JButton("off");
+        buttonKit.setBounds(0,100,100,50);
+        buttonKit.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                if(maison.kit.lightState==true)
+                { maison.kit.switchLight(false);
+                    maison.update();
+                    
+                }
+            }
+        });
+        JLabel Kitchenname=new JLabel("Kitchen");
+        Kitchenname.setForeground(new java.awt.Color(255,0,0));
+        Kitchenname.setBounds(200, 0, 100, 20);
+
 
         JPanel BathPanel=new JPanel();
         BathPanel.setBounds(0,400,400,300);
         BathPanel.setBackground(new java.awt.Color(120,120,0));      
+        JButton buttonBath=new JButton("off");
+        buttonBath.setBounds(0,100,100,50);
+        buttonBath.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                if(maison.bath.lightState==true)
+                { maison.bath.switchLight(false);
+                    maison.update();
+                    
+                }
+            }
+        });
+        JLabel Bathroomname=new JLabel("Bathroom");
+        Bathroomname.setForeground(new java.awt.Color(255,0,0));
+        Bathroomname.setBounds(200, 0, 100, 20);
+        // BathPanel
+
 
         JPanel BedroomPanel=new JPanel();
         BedroomPanel.setBounds(400,400,400,300);
-        BedroomPanel.setBackground(new java.awt.Color(46,120,80)); 
+        BedroomPanel.setBackground(new java.awt.Color(46,120,80));
+        JButton buttonBed=new JButton("off");
+        buttonBed.setBounds(0,100,100,50);
+        buttonBed.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                if(maison.bed.lightState==true)
+                { maison.bed.switchLight(false);
+                    maison.update();
+                    
+                }
+            }
+        });
+        JLabel Bedroomname=new JLabel("Bedroom");
+        Bedroomname.setForeground(new java.awt.Color(255,0,0));
+        Bedroomname.setBounds(200, 0, 100, 20);
+
+
 
         JLabel electricLabel=new JLabel();
         electricLabel.setBounds(20,0,140,20);
@@ -82,6 +188,29 @@ public class GUI
         NbOfLampeturnedOn.setForeground(new java.awt.Color(255,0,0));
         this.NbOfLampeturnedOn=NbOfLampeturnedOn;
 
+        //label location
+        JLabel locationbed=new JLabel();
+        locationbed.setBounds(0, 0, 70, 30);
+        this.locationBed=locationbed;
+        locationbed.setForeground(new java.awt.Color(255,0,0));
+
+        JLabel locationKit=new JLabel("Here");
+        locationKit.setBounds(0, 0, 70, 30);
+        this.locationKit=locationKit;
+        locationKit.setForeground(new java.awt.Color(255,0,0));
+
+
+        JLabel locationBath=new JLabel();
+        locationBath.setBounds(0, 0, 70, 30);
+        this.locationBath=locationBath;
+        locationBath.setForeground(new java.awt.Color(255,0,0));
+
+
+        JLabel locationLiving=new JLabel();
+        locationLiving.setBounds(0, 0, 70, 30);
+        this.locationLiving=locationLiving;
+        locationLiving.setForeground(new java.awt.Color(255,0,0));
+
         
 
         // frame.setVisible(true);
@@ -89,10 +218,30 @@ public class GUI
         InfoPanel.add(Famine);
         InfoPanel.add(Money);
         InfoPanel.add(NbOfLampeturnedOn);
+        KitchenPanel.add(buttonKit);
+        BedroomPanel.add(buttonBed);
+        BathPanel.add(buttonBath);
+        LivingPanel.add(buttonLiv);
+        BedroomPanel.add(Bedroomname);
+        LivingPanel.add(Livingname);
+        KitchenPanel.add(Kitchenname);
+        BathPanel.add(Bathroomname);
+
+        BathPanel.add(locationBath);
+        KitchenPanel.add(locationKit);
+        LivingPanel.add(locationLiving);
+        BedroomPanel.add(locationBed);
+
+
+
 
 
 
         InfoPanel.setLayout(null);
+        BathPanel.setLayout(null);
+        BedroomPanel.setLayout(null);
+        LivingPanel.setLayout(null);
+        KitchenPanel.setLayout(null);
 
         frame.add(InfoPanel);
 

@@ -169,25 +169,27 @@ class MainPlay
     }
     static private Habitant Gameinit(Player player)
     {
-            GUI gui=new GUI();
-            gui.createAndShowGUI();
+        
+        GUI gui=new GUI();
+        gui.createAndShowGUI();
+        Habitant habitant;
+        maison=new Maison(player,gui);
+        gui.setMaison(maison);
+        habitant=new Habitant("Saad",65,90,maison.kit,0);
+        maison.setHabitant(habitant);
+        maison.update();
 
-            Habitant habitant;
-            maison=new Maison(player,gui);
-            habitant=new Habitant("Saad",65,90,maison.kit,0);
-            maison.setHabitant(habitant);
-            maison.update();
+        SchedulerThread threadSched=new SchedulerThread(habitant,maison);
+        // System.out.println(player.money+"!!!!!!!!111");
+        EtatThread threadEtat=new EtatThread(habitant,player);
+        PlayerOrders playerorders=new PlayerOrders(player, maison, habitant);
 
-            SchedulerThread threadSched=new SchedulerThread(habitant,maison);
-            // System.out.println(player.money+"!!!!!!!!111");
-            EtatThread threadEtat=new EtatThread(habitant,player);
-            PlayerOrders playerorders=new PlayerOrders(player, maison, habitant);
+        // maison.gui.setlocation("Kitchen");
 
-
-            threadSched.start();
-            threadEtat.start();
-            playerorders.start();
-            return habitant;
+        threadSched.start();
+        threadEtat.start();
+        playerorders.start();
+        return habitant;
     }
     public static void main(String[] args)
     {

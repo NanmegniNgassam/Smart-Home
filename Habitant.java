@@ -120,6 +120,7 @@ class Habitant
                 }
                 
                 this.location=maison.bed;
+                maison.gui.setlocation("Bedroom");
             }
             else if(reponse==1)
             {   
@@ -132,6 +133,8 @@ class Habitant
                     e.printStackTrace();
                 }
                 this.location=maison.kit;
+                maison.gui.setlocation("Kitchen");
+
             }
             else if(reponse==2)//bathroom
             {
@@ -143,6 +146,7 @@ class Habitant
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                maison.gui.setlocation("Bathroom");
 
                 this.location=maison.bath;
             }
@@ -158,6 +162,8 @@ class Habitant
                 }
 
                 this.location=maison.living;
+                maison.gui.setlocation("LivingRoom");
+
             }
     }
 }

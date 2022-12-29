@@ -27,9 +27,9 @@ public class PlayerOrders extends Thread
             if(maison.living.lightState==true)
             {
                 maison.living.switchLight(false);
+                maison.update();
                 System.out.println("Livin1!!!!!!!!!!!11");
 
-                maison.update();
             }
         }
         else if(reponse==2)
