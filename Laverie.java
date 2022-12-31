@@ -1,7 +1,7 @@
-
+// package MaisonPack.Equipement;
 public class Laverie extends Objet 
 {
-    Laverie()
+    public Laverie()
     {
         level=0;
         Name="Machine Laver";

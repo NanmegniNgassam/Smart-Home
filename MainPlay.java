@@ -1,3 +1,5 @@
+// package Playerpack;
+// import MaisonPack.*;
 import java.util.*;
 import java.util.Random;
 
@@ -121,7 +123,14 @@ class MainPlay
         // System.out.println("0-faire la lessive");
         // System.out.println("1-se deplacer");
         // int reponse = rand.nextInt(2);
-        if(maison.bath.lightState==false){maison.bath.switchLight(true);}
+        if(maison.bath.lightState==false)
+        {
+            maison.gui.BathPanel.setImage("images/Bathroom.jpg");
+            // maison.gui.frame.add(maison.gui.BathPanel);
+            // maison.gui.frame.setVisible(true);
+
+            maison.bath.switchLight(true);
+        }
         maison.update();
 
         int reponse=0;

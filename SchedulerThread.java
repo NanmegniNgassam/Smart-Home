@@ -1,3 +1,5 @@
+// package Playerpack;
+// import MaisonPack.*;
 class SchedulerThread extends Thread
 {   
     Habitant habitant;

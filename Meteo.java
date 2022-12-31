@@ -1,3 +1,5 @@
+// package Playerpack;
+
 class Meteo 
 {
     private float temperatature;

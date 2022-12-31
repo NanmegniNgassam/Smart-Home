@@ -1,9 +1,10 @@
-abstract class Room 
+// package MaisonPack;
+public abstract class Room 
 {
-    protected boolean viewState;
-    protected boolean lightState=false;
-    String  nameOfRoom;
-    static int nbOfturnedOnLights=0;
+    public boolean viewState;
+    public boolean lightState=false;
+    public String  nameOfRoom;
+    public static int nbOfturnedOnLights=0;
 
 
     

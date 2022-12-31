@@ -1,9 +1,11 @@
-
-public class Player 
+// package Playerpack;
+// import MaisonPack.*;
+// import MaisonPack.Equipement.*;
+public  class Player 
 {
     String Name;
     int Level;
-    protected int money;
+    public int money;
 
     Player(int Level,int money)
     {

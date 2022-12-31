@@ -1,6 +1,10 @@
+// package Playerpack;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*; 
+// import MaisonPack.*;
+// package Playerpack;
+
 public class GUI 
 {
     // JFrame Frame;
@@ -16,9 +20,11 @@ public class GUI
     JLabel locationKit;
     JLabel locationLiving;
 
+    ImagePanel BathPanel;
+    JFrame frame;
     // JPanel Bed;
 
-    void setlocation(String roomname)
+    public void setlocation(String roomname)
     {
         locationBath.setText("");
         locationBed.setText("");
@@ -46,24 +52,24 @@ public class GUI
 
     }
 
-    void setTextlectriclabel(int elecvalue)
+    public void setTextlectriclabel(int elecvalue)
     {
 
         Electric.setText("Electricity:"+Integer.toString(elecvalue));
         // System.out.println(elecvalue+"!!!!!!!!");
     }
-    void setTextFaminelabel(int famine)
+    public void setTextFaminelabel(int famine)
     {
 
         Famine.setText("Famine:"+Integer.toString(famine));
         // System.out.println(elecvalue+"!!!!!!!!");
     }
-    void setTextMoneyLabel(int money)
+    public void setTextMoneyLabel(int money)
     {
         Money.setText("Money:"+Integer.toString(money));
     }
 
-    void setTextLampesOn(int number)
+    public void setTextLampesOn(int number)
     {
         NbOfLampeturnedOn.setText("LampsTurnedOn:"+Integer.toString(number));
     }
@@ -75,13 +81,16 @@ public class GUI
      
     {
         JFrame frame = new JFrame("SmartHome");
+        this.frame=frame;
         
         JPanel InfoPanel=new JPanel();
         InfoPanel.setBounds(0, 0,800,100);        
         InfoPanel.setBackground(new java.awt.Color(25,25, 25));
         // InfoPanel.setBounds(0, 0,700,100);        
         
-        JPanel LivingPanel=new JPanel();
+        ImagePanel LivingPanel=new  ImagePanel(
+            new ImageIcon("images/LivingRoom.jpg").getImage());
+        // JPanel LivingPanel=new JPanel();
         LivingPanel.setBounds(0,100,400,300);
         LivingPanel.setBackground(new java.awt.Color(50,50,50));
         JButton buttonLiv=new JButton("off");
@@ -102,10 +111,11 @@ public class GUI
         Livingname.setBounds(200, 0, 100, 20);
 
 
-
-        JPanel KitchenPanel=new JPanel();
+        
+        ImagePanel KitchenPanel=new  ImagePanel(
+            new ImageIcon("images/background2.jpeg").getImage());
         KitchenPanel.setBounds(400,100,400,300);
-        KitchenPanel.setBackground(new java.awt.Color(56,120,50));
+        // KitchenPanel.setBackground(new java.awt.Color(56,120,50));
         JButton buttonKit=new JButton("off");
         buttonKit.setBounds(0,100,100,50);
         buttonKit.addActionListener(new ActionListener()
@@ -124,9 +134,12 @@ public class GUI
         Kitchenname.setBounds(200, 0, 100, 20);
 
 
-        JPanel BathPanel=new JPanel();
+        ImagePanel BathPanel=new  ImagePanel(
+            new ImageIcon("images/Bathroomnolight.jpg").getImage());  
+        this.BathPanel=BathPanel;
+        // this.BathPanel.
         BathPanel.setBounds(0,400,400,300);
-        BathPanel.setBackground(new java.awt.Color(120,120,0));      
+        // BathPanel.setBackground(new java.awt.Color(120,120,0));      
         JButton buttonBath=new JButton("off");
         buttonBath.setBounds(0,100,100,50);
         buttonBath.addActionListener(new ActionListener()
@@ -146,7 +159,10 @@ public class GUI
         // BathPanel
 
 
-        JPanel BedroomPanel=new JPanel();
+        // JPanel BedroomPanel=new JPanel();
+        ImagePanel BedroomPanel=new  ImagePanel(
+            new ImageIcon("images/Bedroom.jpg").getImage());  
+        // BedroomPanel.setImage("images/Bathroom.jpg");
         BedroomPanel.setBounds(400,400,400,300);
         BedroomPanel.setBackground(new java.awt.Color(46,120,80));
         JButton buttonBed=new JButton("off");
@@ -261,3 +277,44 @@ public class GUI
 
 
 }
+class ImagePanel extends JPanel {
+
+    private Image img;
+  
+    public ImagePanel(String img) {
+      this(new ImageIcon(img).getImage());
+    }
+  
+    public ImagePanel(Image img) {
+      this.img = img;
+      Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
+      setPreferredSize(size);
+      setMinimumSize(size);
+      setMaximumSize(size);
+      setSize(size);
+      setLayout(null);
+    }
+  
+    public void setImage(String img)
+    {
+        // this.removeAll();
+        this.img=new ImageIcon(img).getImage();
+        Dimension size = new Dimension(this.img.getWidth(null), this.img.getHeight(null));
+        setPreferredSize(size);
+        setMinimumSize(size);
+        setMaximumSize(size);
+        setSize(size);
+        // setLayout(null);
+        // setVisible(true);
+        this.repaint();
+        setLayout(null);
+
+
+    }
+    public void paintComponent(Graphics g) {
+      super.paintComponent(g);
+      g.drawImage(img, 0, 0, null);
+      System.out.println("HEEEEEEEEEEEEEEEe");
+    }
+  
+  }

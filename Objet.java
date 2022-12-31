@@ -1,9 +1,11 @@
-abstract class Objet 
+// package MaisonPack.Equipement;
+
+public abstract class Objet 
 {
-    protected int level;
-    protected String Name;
-    protected float priceToUpgrade;
-    protected int electricityUse;
+    public int level;
+    public String Name;
+    public float priceToUpgrade;
+    public int electricityUse;
     
     public void upgrade(){};
 }

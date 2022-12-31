@@ -1,14 +1,15 @@
+// package Playerpack;
 import java.util.Random;
-
-class Habitant
+// import MaisonPack.*;
+public class Habitant
 {
-    protected String Name;
-    protected int famine;
-    protected int sante;
-    protected Room location;
-    protected int level;
-    protected Boolean isAlive=true;
-    protected int electricity=100;
+    public String Name;
+    public int famine;
+    public int sante;
+    public Room location;
+    public int level;
+    public Boolean isAlive=true;
+    public int electricity=100;
 
 
     Habitant(String Name,int famine,int sante,Room location,int level)

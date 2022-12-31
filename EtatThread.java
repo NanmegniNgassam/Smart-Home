@@ -1,4 +1,6 @@
-class EtatThread extends Thread
+// package Playerpack;
+// import MaisonPack.*;
+public class EtatThread extends Thread
 {
     Habitant habitant;
     Player player;

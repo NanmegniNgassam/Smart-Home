@@ -1,30 +1,32 @@
-class Maison    
+// package MaisonPack;
+// import Playerpack.*;
+public class Maison    
 {
 
-    Kitchen kit;
-    Bedroom bed;
-    Bathroom bath;
-    LivingRoom living;
-    GUI gui;
+    public Kitchen kit;
+    public Bedroom bed;
+    public Bathroom bath;
+    public LivingRoom living;
+    public GUI gui;
     Habitant habitant;
     Player player;
 
 
-    Maison(Player player,GUI gui)
+    public Maison(Player player,GUI gui)
     {
-        kit=new Kitchen();
+        kit=new Kitchen(gui);
         bed=new Bedroom();
-        bath=new Bathroom();
-        living=new LivingRoom();
+        bath=new Bathroom(gui);
+        living=new LivingRoom(gui);
         this.gui=gui;
         this.player=player;
     }
-    void setHabitant(Habitant habitant)
+    public void setHabitant(Habitant habitant)
     {
         this.habitant=habitant;
     }
 
-    void update()
+    public void update()
     {
         // System.out.println("!!!!!!!!!!!!!"+habitant.electricity);
         int elec=habitant.electricity;

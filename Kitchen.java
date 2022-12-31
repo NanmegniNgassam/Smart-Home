@@ -1,10 +1,15 @@
-class Kitchen extends Room
+// package MaisonPack;
+// import MaisonPack.Equipement.*;
+
+public class Kitchen extends Room
 {
     protected Objet four;
-
-    Kitchen()
+    protected GUI gui;
+    Kitchen(GUI gui)
     {
         nameOfRoom="Kitchen";
+        this.gui=gui;
+
     }
 
 

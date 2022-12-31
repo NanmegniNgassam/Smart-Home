@@ -1,6 +1,8 @@
+// package MaisonPack.Equipement;
+
 public class Television  extends Objet
 {
-    Television()
+    public Television()
     {
         level=0;
         Name="Machine Laver";
