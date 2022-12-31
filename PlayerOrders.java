@@ -79,6 +79,10 @@ public class PlayerOrders extends Thread
             System.out.println("1-Eteindre la lumiere");
             System.out.println("2-Upgrade television");
             System.out.println("3- upgrade la laverie");
+            System.out.println("4-Payer La Facture");
+            System.out.println("5 forcer a partir");
+
+
 
 
             
@@ -91,10 +95,21 @@ public class PlayerOrders extends Thread
             if (reponse==2)
             {
                 player.upgrade(maison.living.TV);
+                maison.update();
             }
             if (reponse==3)
             {
                 player.upgrade(maison.bath.laverie);
+                maison.update();
+
+            }
+            if(reponse==4)
+            {
+                player.payerFacture();
+            }
+            if(reponse==5)
+            {
+                MainPlay.forcerChoixDeplacement=1;
             }
 
 

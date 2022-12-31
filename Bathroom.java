@@ -16,9 +16,12 @@ public class Bathroom extends Room
     public void switchLight(Boolean onoff) {
         super.switchLight(onoff);
         if (onoff==true) 
-        {   
-            
-            System.out.println("I am here");
+        {   gui.BathPanel.setImage("images/Bathroom.jpg");
+            // KCSystem.out.println("I am here");
+        }
+        else
+        {
+            gui.BathPanel.setImage("images/Bathroomnolight.jpg");   
         }
     }
 

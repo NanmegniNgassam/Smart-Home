@@ -14,14 +14,29 @@ public class GUI
     JLabel Money;
     JLabel NbOfLampeturnedOn;
     Maison maison;
+    JLabel Level;
 
     JLabel locationBed;
     JLabel locationBath;
     JLabel locationKit;
     JLabel locationLiving;
+    JLabel LaverieLevel;
+    JLabel TVLevel;
+    JLabel FactureTemps;
 
+
+    // JFrame frame;
     ImagePanel BathPanel;
-    JFrame frame;
+    ImagePanel LivingPanel;
+    ImagePanel KitchenPanel;
+    ImagePanel BedroomPanel;
+
+    JButton buttonBath;
+    JButton buttonLiv;
+    JButton buttonKit;
+    JButton buttonBed;
+
+
     // JPanel Bed;
 
     public void setlocation(String roomname)
@@ -40,7 +55,7 @@ public class GUI
         }
         if (roomname=="Kitchen")
         {
-            locationBath.setText("Here");
+            locationKit.setText("Here");
         }
         if (roomname=="LivingRoom")
         {
@@ -68,10 +83,25 @@ public class GUI
     {
         Money.setText("Money:"+Integer.toString(money));
     }
-
+    public void setTextLevel(int level)
+    {
+        Level.setText("Level:"+Integer.toString(level));
+    }
+    public void setLaverieLevel(int level)
+    {
+        LaverieLevel.setText("Laverie Level:"+Integer.toString(level));
+    }
+    public void setTVLevel(int level)
+    {
+        TVLevel.setText("TV Level:"+Integer.toString(level));
+    }
     public void setTextLampesOn(int number)
     {
         NbOfLampeturnedOn.setText("LampsTurnedOn:"+Integer.toString(number));
+    }
+    public void setTempsFacture(int temps)
+    {
+        FactureTemps.setText("Facture echeance:"+Integer.toString(temps));
     }
     public void setMaison(Maison maison){this.maison=maison;}
 
@@ -81,19 +111,21 @@ public class GUI
      
     {
         JFrame frame = new JFrame("SmartHome");
-        this.frame=frame;
-        
+        // this.frame=frame;
+        frame.repaint();
         JPanel InfoPanel=new JPanel();
         InfoPanel.setBounds(0, 0,800,100);        
         InfoPanel.setBackground(new java.awt.Color(25,25, 25));
         // InfoPanel.setBounds(0, 0,700,100);        
         
         ImagePanel LivingPanel=new  ImagePanel(
-            new ImageIcon("images/LivingRoom.jpg").getImage());
+            new ImageIcon("images/LivingNoLight.jpg").getImage());
+        this.LivingPanel=LivingPanel;
         // JPanel LivingPanel=new JPanel();
         LivingPanel.setBounds(0,100,400,300);
         LivingPanel.setBackground(new java.awt.Color(50,50,50));
         JButton buttonLiv=new JButton("off");
+        this.buttonLiv=buttonLiv;
         buttonLiv.setBounds(0,100,100,50);
         buttonLiv.addActionListener(new ActionListener()
         {
@@ -113,10 +145,13 @@ public class GUI
 
         
         ImagePanel KitchenPanel=new  ImagePanel(
-            new ImageIcon("images/background2.jpeg").getImage());
+            new ImageIcon("images/Kitchen.jpeg").getImage());
+        this.KitchenPanel=KitchenPanel;
         KitchenPanel.setBounds(400,100,400,300);
         // KitchenPanel.setBackground(new java.awt.Color(56,120,50));
         JButton buttonKit=new JButton("off");
+        this.buttonKit=buttonKit;
+        buttonKit.setEnabled(false);
         buttonKit.setBounds(0,100,100,50);
         buttonKit.addActionListener(new ActionListener()
         {
@@ -141,6 +176,7 @@ public class GUI
         BathPanel.setBounds(0,400,400,300);
         // BathPanel.setBackground(new java.awt.Color(120,120,0));      
         JButton buttonBath=new JButton("off");
+        this.buttonBath=buttonBath;
         buttonBath.setBounds(0,100,100,50);
         buttonBath.addActionListener(new ActionListener()
         {
@@ -161,11 +197,13 @@ public class GUI
 
         // JPanel BedroomPanel=new JPanel();
         ImagePanel BedroomPanel=new  ImagePanel(
-            new ImageIcon("images/Bedroom.jpg").getImage());  
+            new ImageIcon("images/BedroomNoLight.jpg").getImage());  
+        this.BedroomPanel=BedroomPanel;
         // BedroomPanel.setImage("images/Bathroom.jpg");
         BedroomPanel.setBounds(400,400,400,300);
         BedroomPanel.setBackground(new java.awt.Color(46,120,80));
         JButton buttonBed=new JButton("off");
+        this.buttonBed=buttonBed;
         buttonBed.setBounds(0,100,100,50);
         buttonBed.addActionListener(new ActionListener()
         {
@@ -204,6 +242,59 @@ public class GUI
         NbOfLampeturnedOn.setForeground(new java.awt.Color(255,0,0));
         this.NbOfLampeturnedOn=NbOfLampeturnedOn;
 
+        JLabel Level=new JLabel();
+        Level.setBounds(180,0,140,20);
+        Level.setForeground(new java.awt.Color(255,0,0));
+        this.Level=Level;
+
+        JLabel LaverieLevel=new JLabel();
+        LaverieLevel.setBounds(180,20 ,140,20);
+        LaverieLevel.setForeground(new java.awt.Color(255,0,0));
+        this.LaverieLevel=LaverieLevel;
+
+        JLabel TVLevel=new JLabel();
+        TVLevel.setBounds(180,40 ,140,20);
+        TVLevel.setForeground(new java.awt.Color(255,0,0));
+        this.TVLevel=TVLevel;
+
+        JLabel FactureTemps=new JLabel();
+        FactureTemps.setBounds(180,60 ,160,20);
+        FactureTemps.setForeground(new java.awt.Color(255,0,0));
+        this.FactureTemps=FactureTemps;
+        
+        JButton buttonFacture=new JButton("Payer Facture");
+        buttonFacture.setBounds(360,0,150,30);
+        buttonFacture.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                maison.player.payerFacture();
+            }
+        });
+        JButton UpdateLaverie=new JButton("Ugrade Laverie");
+        UpdateLaverie.setBounds(360,30,150,30);
+        UpdateLaverie.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                maison.player.upgrade(maison.bath.laverie);
+            }
+        });
+        JButton UpdateTv=new JButton("Ugrade TV");
+        UpdateTv.setBounds(360,60,150,30);
+        UpdateTv.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                maison.player.upgrade(maison.living.TV);
+            }
+        });
+
+
+
+
+
+
         //label location
         JLabel locationbed=new JLabel();
         locationbed.setBounds(0, 0, 70, 30);
@@ -234,6 +325,13 @@ public class GUI
         InfoPanel.add(Famine);
         InfoPanel.add(Money);
         InfoPanel.add(NbOfLampeturnedOn);
+        InfoPanel.add(Level);
+        InfoPanel.add(LaverieLevel);
+        InfoPanel.add(TVLevel);
+        InfoPanel.add(FactureTemps);
+        InfoPanel.add(buttonFacture);
+        InfoPanel.add(UpdateLaverie);
+        InfoPanel.add(UpdateTv);
         KitchenPanel.add(buttonKit);
         BedroomPanel.add(buttonBed);
         BathPanel.add(buttonBath);
@@ -247,6 +345,7 @@ public class GUI
         KitchenPanel.add(locationKit);
         LivingPanel.add(locationLiving);
         BedroomPanel.add(locationBed);
+
 
 
 

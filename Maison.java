@@ -15,7 +15,7 @@ public class Maison
     public Maison(Player player,GUI gui)
     {
         kit=new Kitchen(gui);
-        bed=new Bedroom();
+        bed=new Bedroom(gui);
         bath=new Bathroom(gui);
         living=new LivingRoom(gui);
         this.gui=gui;
@@ -35,6 +35,10 @@ public class Maison
         gui.setTextFaminelabel(habitant.famine);
         gui.setTextMoneyLabel(player.money);
         gui.setTextLampesOn(Room.nbOfturnedOnLights);
+        gui.setTextLevel(player.Level);
+        gui.setTVLevel(living.TV.level);
+        gui.setLaverieLevel(bath.laverie.level);
+        gui.setTempsFacture(player.Facturefrequence);
     }
 
 

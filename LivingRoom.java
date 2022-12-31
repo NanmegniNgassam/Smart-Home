@@ -18,9 +18,18 @@ public class LivingRoom extends Room
 
     }
     @Override
-    public void switchLight(Boolean onoff) {
+    public void switchLight(Boolean onoff) 
+    {
         super.switchLight(onoff);
-
+        // super.switchLight(onoff);
+        if (onoff==true) 
+        {   gui.LivingPanel.setImage("images/LivingRoom.jpg");
+            // KCSystem.out.println("I am here");
+        }
+        else
+        {
+            gui.LivingPanel.setImage("images/LivingNoLight.jpg");   
+        }
     }
 
 

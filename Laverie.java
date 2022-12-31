@@ -6,17 +6,18 @@ public class Laverie extends Objet
         level=0;
         Name="Machine Laver";
         priceToUpgrade=10;
-        electricityUse=5;
+        electricityUse=15;
     }    
 
 
     @Override
     public void upgrade() 
     {
-        if (level!=5)
+        if (level!=4)
         {
             level+=1;
-            electricityUse--;
+            electricityUse=electricityUse-2;
+            System.out.println("updated");
         }        
     }
 

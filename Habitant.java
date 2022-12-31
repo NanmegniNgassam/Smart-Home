@@ -10,6 +10,8 @@ public class Habitant
     public int level;
     public Boolean isAlive=true;
     public int electricity=100;
+    GUI gui;
+
 
 
     Habitant(String Name,int famine,int sante,Room location,int level)
@@ -22,7 +24,8 @@ public class Habitant
         // this.
     }
 
-    public void seDeplacer(Room r){};
+    public void setGUI(GUI gui)
+    {this.gui=gui;}
     
     public void prendreUnBain(){};
     public void allumerTelevision(Maison maison)
@@ -59,7 +62,6 @@ public class Habitant
         }
     };
     public void allumerLeChauffage(){};
-    public void payerFacture(float amount){};
     public void jouerPs4(){};
     public void seNourrir(Maison maison)
     {
@@ -85,7 +87,7 @@ public class Habitant
         
         Random rand = new Random();
         System.out.println("how many hours you want so sleep");
-        int reponse2=rand.nextInt(10);
+        int reponse2=rand.nextInt(6);
         System.out.println("Random reponse:"+reponse2);
 
         for (int cptH=reponse2;cptH!=0;cptH--)//i take the input +for :)
@@ -121,7 +123,8 @@ public class Habitant
                 }
                 
                 this.location=maison.bed;
-                maison.gui.setlocation("Bedroom");
+                gui.setlocation("Bedroom");
+                gui.buttonBed.setEnabled(false);
             }
             else if(reponse==1)
             {   
@@ -134,7 +137,8 @@ public class Habitant
                     e.printStackTrace();
                 }
                 this.location=maison.kit;
-                maison.gui.setlocation("Kitchen");
+                gui.setlocation("Kitchen");
+                gui.buttonKit.setEnabled(false);
 
             }
             else if(reponse==2)//bathroom
@@ -147,9 +151,11 @@ public class Habitant
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                maison.gui.setlocation("Bathroom");
-
                 this.location=maison.bath;
+                gui.setlocation("Bathroom");
+                gui.buttonBath.setEnabled(false);
+
+
             }
             else if(reponse==3)//living
             {
@@ -163,7 +169,9 @@ public class Habitant
                 }
 
                 this.location=maison.living;
-                maison.gui.setlocation("LivingRoom");
+                gui.setlocation("LivingRoom");
+                gui.buttonLiv.setEnabled(false);
+
 
             }
     }
